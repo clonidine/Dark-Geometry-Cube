@@ -8,14 +8,16 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     private final ImageIcon background = new Main().getBackDraw();
     private final CharController player = new Main().getPlayer();
-    private static final int GAME_UPDATE_DELAY = 1000 / 60;
+
+    private static final int GAME_FPS = 60;
+    private static final int GAME_UPDATE_DELAY = 1000;
 
     public GamePanel() {
-        startGameUpdateTimer();
+        startGameTicks();
     }
 
-    private void startGameUpdateTimer() {
-        new Timer(GAME_UPDATE_DELAY, e -> updateGame()).start();
+    private void startGameTicks() {
+        new Timer(GAME_UPDATE_DELAY / GAME_FPS, e -> updateGame()).start();
     }
 
     private void updateGame() {
