@@ -1,18 +1,21 @@
 package tiostitch.geometry.cube;
 
 import tiostitch.geometry.cube.controllers.CharController;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
     private final ImageIcon background = new Main().getBackDraw();
     private final CharController player = new Main().getPlayer();
+    private static final int GAME_UPDATE_DELAY = 1000 / 60;
 
     public GamePanel() {
-        final Timer timer = new Timer(1000 / 60, e -> updateGame());
-        timer.start();
+        startGameUpdateTimer();
+    }
+
+    private void startGameUpdateTimer() {
+        new Timer(GAME_UPDATE_DELAY, e -> updateGame()).start();
     }
 
     private void updateGame() {
